@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCcents Digital Store Catalog</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7;
+        }
+        /* Custom scrollbar to match premium neobrutalism style */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #ffffff;
+            border-left: 2px solid #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #000000;
+            border: 2px solid #ffffff;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #222222;
+        }
+    </style>
+</head>
+<body class="text-black min-h-screen flex flex-col selection:bg-black selection:text-white relative">
+
+    <!-- Header / Navigation -->
+    <header class="border-b-4 border-black bg-white sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 border-2 border-black bg-black flex items-center justify-center text-white font-black text-xl tracking-wider shadow-[2px_2px_0px_rgba(0,0,0,1)]">
+                    P
+                </div>
+                <div>
+                    <span class="text-black font-black text-xl tracking-tighter block uppercase">PCcents</span>
+                    <span class="text-[9px] text-neutral-500 tracking-widest block uppercase font-bold -mt-0.5">Digital Reselling Service</span>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <a href="https://wa.me/923040799536" target="_blank" rel="noopener noreferrer" 
+                   class="inline-flex items-center space-x-2 text-xs font-black text-black hover:bg-black hover:text-white border-2 border-black bg-white px-4 py-2.5 shadow-[3px_3px_0px_rgba(0,0,0,1)] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none transition-all duration-100">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.963C16.631 2.016 14.167.993 11.54.993c-5.44 0-9.866 4.372-9.87 9.802 0 1.714.475 3.393 1.373 4.881L2.033 21.9l6.39-1.652c.002-.001.002-.001.002-.001z"/>
+                    </svg>
+                    <span class="uppercase tracking-wider">Direct Chat</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero / Controls Panel -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        
+        <!-- Search & Control Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-black uppercase mb-2">Browse the Catalog</h1>
+            <p class="text-xs text-neutral-600 font-medium max-w-xl">Find premium game packages, system utilities, custom operating systems, and professional-grade development platforms.</p>
+        </div>
+
+        <div class="bg-white border-4 border-black p-4 sm:p-6 mb-8 space-y-5 shadow-[6px_6px_0px_rgba(0,0,0,1)]">
+            <div class="flex flex-col md:flex-row gap-4">
+                <!-- Search bar -->
+                <div class="relative flex-grow">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                        <svg class="h-5 w-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </span>
+                    <input type="text" id="searchInput" 
+                           placeholder="Search from hundreds of items (e.g. Elden Ring, Adobe, Office...)" 
+                           class="w-full pl-11 pr-4 py-3 bg-white border-2 border-black text-sm text-black placeholder-neutral-500 font-semibold focus:outline-none focus:bg-neutral-50 transition-colors" />
+                </div>
+                
+                <!-- Sort options -->
+                <div class="w-full md:w-52">
+                    <select id="sortSelect" 
+                            class="w-full px-3 py-3 bg-white border-2 border-black text-sm text-black font-black uppercase tracking-wider focus:outline-none focus:bg-neutral-50 cursor-pointer transition-colors">
+                        <option value="az">Sort: A-Z</option>
+                        <option value="za">Sort: Z-A</option>
+                        <option value="category">Sort: Category</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Interactive filter pills -->
+            <div class="border-t-2 border-black pt-4">
+                <span class="text-[10px] uppercase tracking-wider text-black block mb-3 font-black">Categories</span>
+                <div class="flex flex-wrap gap-2" id="categoryPillContainer">
+                    <!-- Category pills populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Stat Banner -->
+        <div class="flex items-center justify-between text-xs text-black mb-6 bg-white px-4 py-3 border-2 border-black font-bold shadow-[3px_3px_0px_rgba(0,0,0,1)]">
+            <div>
+                Showing <span id="visibleCount" class="font-black underline">0</span> of <span id="totalCount" class="font-black">0</span> listings
+            </div>
+            <div id="filterDetails" class="hidden sm:block text-neutral-500 italic">
+                Active Category: <span id="activeCategoryName" class="text-black font-black uppercase not-italic">All</span>
+            </div>
+        </div>
+
+        <!-- Product Grid -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Populated dynamically -->
+        </div>
+
+        <!-- Load More Section -->
+        <div id="loadMoreContainer" class="flex justify-center mt-12 mb-6 hidden">
+            <button id="loadMoreBtn" class="px-8 py-3.5 bg-white hover:bg-black hover:text-white text-black border-4 border-black text-xs font-black tracking-widest transition-all shadow-[4px_4px_0px_rgba(0,0,0,1)] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none uppercase">
+                LOAD MORE ITEMS
+            </button>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="hidden text-center py-24 border-4 border-dashed border-black bg-white shadow-[4px_4px_0px_rgba(0,0,0,1)]">
+            <svg class="mx-auto h-12 w-12 text-black mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <p class="text-black font-bold text-sm uppercase tracking-wider mb-4">No items match your active search filter.</p>
+            <button onclick="clearFilters()" class="px-4 py-2 bg-black text-white text-xs font-black uppercase tracking-widest border-2 border-black hover:bg-white hover:text-black transition-colors">Clear Search and Filter</button>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white border-t-4 border-black py-12 text-xs mt-16 font-semibold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="text-center md:text-left space-y-1.5">
+                <p class="text-white font-black text-sm tracking-wider uppercase">PCCENTS DIGITAL RESELLER</p>
+                <p class="text-neutral-400 font-medium">&copy; 2025 Catalog Service. All registered brands, logos, and game assets belong to their respective creators.</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="inline-flex items-center gap-2 border-2 border-neutral-800 bg-neutral-900 px-3 py-1.5 uppercase text-[10px] font-black tracking-wider"><span class="w-2.5 h-2.5 bg-emerald-500"></span> WhatsApp Verified Ordering</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Item Modal (Details View) -->
+    <div id="detailModal" class="fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Background overlay -->
+            <div class="fixed inset-0 bg-black/90 backdrop-blur-sm transition-opacity" aria-hidden="true" onclick="closeModal()"></div>
+
+            <!-- Trick element to center modal -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <!-- Modal Content -->
+            <div class="inline-block align-bottom bg-white border-4 border-black text-left overflow-hidden transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full shadow-[10px_10px_0px_rgba(0,0,0,1)] rounded-none">
+                <div class="bg-white px-4 py-5 sm:px-6 border-b-2 border-black flex justify-between items-center">
+                    <div>
+                        <span id="modalCategoryTag" class="px-2 py-0.5 text-[9px] font-black tracking-widest bg-black text-white border border-black uppercase">CATEGORY</span>
+                        <h3 class="text-lg sm:text-xl font-black text-black mt-2 uppercase tracking-tight" id="modalTitle">Item Title</h3>
+                    </div>
+                    <button onclick="closeModal()" class="text-black hover:bg-black hover:text-white border-2 border-black p-1 transition-colors">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Modal Cover Image Container -->
+                <div class="w-full h-56 bg-white overflow-hidden relative border-b-2 border-black flex items-center justify-center">
+                    <!-- Standard typographic placeholder is underneath -->
+                    <div id="modalPlaceholderBox" class="absolute inset-0 bg-white flex flex-col justify-between p-4 z-0 select-none">
+                        <span id="modalPlaceholderCategory" class="text-[9px] font-black text-black tracking-wider uppercase">CATEGORY</span>
+                        <span id="modalPlaceholderTitle" class="text-lg font-black text-black uppercase tracking-tighter leading-none block line-clamp-3">TITLE</span>
+                        <div class="text-[8px] text-neutral-400 font-mono font-bold tracking-widest uppercase">SECURE OFFLINE DESKTOP DEPLOYMENT</div>
+                    </div>
+                    <img id="modalCoverImg" src="" alt="Cover Graphic" class="absolute inset-0 w-full h-full object-cover filter contrast-100 brightness-100 z-10" onerror="this.style.opacity='0'">
+                </div>
+
+                <div class="px-4 py-5 sm:px-6 space-y-5 bg-[#fafafa]">
+                    <div>
+                        <h4 class="text-[10px] uppercase tracking-wider text-black font-black mb-1.5">Platform Compatibility</h4>
+                        <div id="modalPlatforms" class="flex flex-wrap gap-1.5">
+                            <!-- Populated on open -->
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-[10px] uppercase tracking-wider text-black font-black mb-1.5">Overview & System Details</h4>
+                        <p class="text-xs text-black leading-relaxed bg-white p-3.5 border-2 border-black font-medium" id="modalDescription">
+                            Product description goes here.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-3 border-2 border-black flex items-center justify-between font-bold text-xs">
+                        <div class="text-[10px] text-black">
+                            Delivery method: <strong class="text-black font-black underline">Fast digital delivery</strong>
+                        </div>
+                        <div class="text-[10px] text-black">
+                            Status: <strong class="text-black font-black uppercase">Available</strong>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white px-4 py-4 sm:px-6 sm:flex sm:flex-row-reverse border-t-2 border-black gap-2">
+                    <a id="modalBuyButton" href="#" target="_blank" rel="noopener noreferrer"
+                       class="w-full inline-flex justify-center items-center bg-black px-4 py-2.5 text-xs font-black text-white hover:bg-white hover:text-black border-2 border-black transition-colors sm:w-auto uppercase tracking-wider shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">
+                        <svg class="w-4 h-4 fill-current mr-2" viewBox="0 0 24 24">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.963C16.631 2.016 14.167.993 11.54.993c-5.44 0-9.866 4.372-9.87 9.802 0 1.714.475 3.393 1.373 4.881L2.033 21.9l6.39-1.652c.002-.001.002-.001.002-.001z"/>
+                        </svg>
+                        Buy on WhatsApp
+                    </a>
+                    <button type="button" onclick="closeModal()"
+                            class="mt-3 w-full inline-flex justify-center bg-white border-2 border-black px-4 py-2.5 text-xs font-black text-black hover:bg-black hover:text-white transition-colors sm:mt-0 sm:w-auto uppercase tracking-wider shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Toast Popup Notification -->
+    <div id="toastNotification" class="fixed bottom-6 right-6 z-50 max-w-sm w-full bg-white border-4 border-black p-5 transform translate-y-12 opacity-0 pointer-events-none transition-all duration-300 ease-out shadow-[6px_6px_0px_rgba(0,0,0,1)]">
+        <div class="flex items-start space-x-4">
+            <div class="w-10 h-10 border-2 border-black bg-black flex-shrink-0 flex items-center justify-center text-white font-black text-base shadow-[2px_2px_0px_rgba(255,255,255,1)]">
+                PC
+            </div>
+            <div class="flex-grow">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-black text-black tracking-wider uppercase">Can't Find Something?</span>
+                    <button onclick="closeToast()" class="text-black hover:bg-neutral-100 p-0.5 border border-transparent hover:border-black transition-colors">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-[11px] text-neutral-600 font-medium mt-1.5 leading-relaxed">
+                    Every available software program or game might not be listed here. Contact us on WhatsApp for any unlisted item—we may have that item!
+                </p>
+                <div class="mt-4 flex items-center justify-end space-x-3">
+                    <button onclick="closeToast()" class="text-[10px] text-neutral-500 hover:text-black font-black uppercase">Dismiss</button>
+                    <a href="https://wa.me/923040799536?text=Hi!%20I%20am%20looki
